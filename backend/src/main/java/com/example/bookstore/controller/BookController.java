@@ -21,7 +21,10 @@ public class BookController {
     }
 
     @GetMapping
-    public List<Book> getAllBooks() {
+    public List<Book> getAllBooks(@RequestParam(required = false) String search) {
+        if (search != null && !search.isEmpty()) {
+            return bookService.searchBooks(search);
+        }
         return bookService.getAllBooks();
     }
 

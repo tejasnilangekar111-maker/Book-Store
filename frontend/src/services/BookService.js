@@ -3,8 +3,9 @@ import axios from 'axios';
 const API_URL = 'http://localhost:8080/api/books';
 
 class BookService {
-    getAllBooks() {
-        return axios.get(API_URL);
+    getAllBooks(search = '') {
+        const url = search ? `${API_URL}?search=${search}` : API_URL;
+        return axios.get(url);
     }
 
     getBookById(id) {
